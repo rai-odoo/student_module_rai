@@ -1,27 +1,45 @@
 from odoo import models, fields,api
-
+from datetime import datetime, timedelta
 
 class Student(models.Model):                
-    _name = 'student.information1'            
+    _name = 'student.information1'        
 
-    name = fields.Char(string="Student Name", required = True) 
-    display_name = fields.Char()
-    birth_date = fields.Date(required = True)                
-    age = fields.Integer(required = True) 
-    sport = fields.Boolean(required = True)
+
+    name = fields.Char(string="Student Name", required = True)
+    birth_date = fields.Date()                
+    age = fields.Integer(compute="compute_age") 
+    sport_enthusiastic = fields.Boolean(string = "Sport Enthusiastic?")
+    # sport_membership = fields.Selection([("game1","Cricket"),("game2","Vollyball")])
     start_exam = fields.Datetime(required = True)
-    percentage = fields.Float(required = True)
     village = fields.Char()
     subject_1 = fields.Integer()
     subject_2 = fields.Integer()
     average = fields.Float(compute="compute_average")
-
-    @api.depends("subject_1","subject_2")
-    def compute_average(self):
-    	for a in self:
-    		a.average = (a.subject_1 + a.subject_2)/2
-
+    display_name = fields.Char()
+    display_name1 = fields.Char()
+    college_id = fields.Many2one('student.college')
     
-    @api.onchange('name')
+    @api.depends("birth_date") # birthdate to age
+    def compute_age(self):
+        if self.birth_date is not False:
+            self.age = (datetime.today().date() - self.birth_date) // timedelta(365)  #// floor division 
+
+    @api.depends("subject_1","subject_2") # average
+    def compute_average(self):
+        for a in self:
+            a.average = (a.subject_1 + a.subject_2)/2
+
+    @api.onchange('name')    # display_name  
     def _onchange_name(self):
-        self.display_name = 'Hello' + self.name if self.name else ''
+        self.display_name = 'Hello' + self.name if self.name else ''   
+
+    @api.onchange('age')    #display_name1
+    def _onchange_age(self):
+        self.display_name1 = 'Your age is: %s' % (self.age if self.age else '')         
+           
+class College(models.Model):
+    _name = 'student.college'
+
+    name = fields.Char(string='College Name')
+
+

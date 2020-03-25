@@ -10,17 +10,22 @@
 
         				<group> 
         					<field name="name"/>
-        					<field name="birth_date"/>
+                            <field name="age"/>
         				</group>
 
+                        <group>
+                            <field name="display_name"/>
+                            <field name="display_name1"/>
+                        </group>
+
         				<group>
-        					<field name="age"/>
-        					<field name="sport"/>
+        					<field name="birth_date"/>
+        					<field name="sport_enthusiastic"/>
         				</group>	
 
         				<group>
         					<field name="start_exam"/>
-        					<field name="percentage"/> 
+                           <!--  <field name="sport_membership"/> -->
         				</group>
 
         				<group>
@@ -32,10 +37,11 @@
         					<field name="average"/>
         					<field name="village" invisible="1"/>
         				</group>
-                        <group>
-                            <field name="display_name"/>
-                        </group>
 
+                        <group>
+                            <field name="college_id"/>
+                        </group>
+                                     
         			</group>		
         		</sheet>
         	</form>
@@ -50,8 +56,8 @@
         	<tree>                                
         		<field name="name"/>         
         		<field name="birth_date" string="Birth"/>         
-        		<field name="age"/>
-        		<field name="sport"/>
+        		<!-- <field name="age"/> -->
+        		<field name="sport_enthusiastic"/>
         		<field name="start_exam"/>
         		<field name="subject_1"/>
         		<field name="subject_2"/>
