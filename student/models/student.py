@@ -17,12 +17,15 @@ class Student(models.Model):
     average = fields.Float(compute="compute_average")
     display_name = fields.Char()
     display_name1 = fields.Char()
-    college_id = fields.Many2one('student.college')
+    college_name_id = fields.Many2one('student.college')
+    college_lines = fields.One2many('student.college.lines','student_id')
+    description = fields.Char()
     
     @api.depends("birth_date") # birthdate to age
     def compute_age(self):
-        if self.birth_date is not False:
-            self.age = (datetime.today().date() - self.birth_date) // timedelta(365)  #// floor division 
+        for b in self:
+            if b.birth_date is not False:
+                b.age = (datetime.today().date() - b.birth_date) // timedelta(365)  #// floor division 
 
     @api.depends("subject_1","subject_2") # average
     def compute_average(self):
@@ -41,5 +44,17 @@ class College(models.Model):
     _name = 'student.college'
 
     name = fields.Char(string='College Name')
+    college_address = fields.Char()
+    taluka = fields.Char()
+    distict = fields.Char()
+
+class College1(models.Model):
+    _name = 'student.college.lines'
+
+    name = fields.Char(string = 'College Name')
+    college_address = fields.Char()
+    taluka = fields.Char()
+    distict = fields.Char()  
+    student_id = fields.Many2one('student.information1')  
 
 

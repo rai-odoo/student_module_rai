@@ -10,21 +10,21 @@
 
         				<group> 
         					<field name="name"/>
-                            <field name="age"/>
+                            <field name="birth_date"/>
         				</group>
 
                         <group>
                             <field name="display_name"/>
-                            <field name="display_name1"/>
+                            <field name="start_exam"/>
                         </group>
 
         				<group>
-        					<field name="birth_date"/>
+        					<field name="age"/>
         					<field name="sport_enthusiastic"/>
         				</group>	
 
         				<group>
-        					<field name="start_exam"/>
+                            <field name="display_name1"/>
                            <!--  <field name="sport_membership"/> -->
         				</group>
 
@@ -35,14 +35,28 @@
 
         				<group>
         					<field name="average"/>
-        					<field name="village" invisible="1"/>
+        					<field name="college_name_id"/>
         				</group>
-
-                        <group>
-                            <field name="college_id"/>
-                        </group>
-                                     
-        			</group>		
+                    </group>
+                        <notebook>
+                            <page string='College Information'>
+                                    <field name="college_lines">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="college_address"/>
+                                            <field name="taluka"/>
+                                            <field name="distict"/>
+                                            <field name="student_id" invisible="1"/>
+                                        </tree>
+                                    </field>
+                                    <field name="village" invisible="1"/>
+                            </page>
+                            <page string='Description'>
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                            </page>
+                        </notebook>        	
         		</sheet>
         	</form>
 
@@ -56,12 +70,13 @@
         	<tree>                                
         		<field name="name"/>         
         		<field name="birth_date" string="Birth"/>         
-        		<!-- <field name="age"/> -->
+        		<field name="age"/>
         		<field name="sport_enthusiastic"/>
         		<field name="start_exam"/>
         		<field name="subject_1"/>
         		<field name="subject_2"/>
         		<field name="average"/>
+                <field name="college_name_id" string="College Name"/>
         	</tree>
         </field>	
     </record>
