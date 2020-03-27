@@ -20,7 +20,8 @@ class Student(models.Model):
     college_name_id = fields.Many2one('student.college')
     college_lines = fields.One2many('student.college.lines','student_id')
     description = fields.Char()
-    
+    student_subject = fields.Many2many('student.subject')
+
     @api.depends("birth_date") # birthdate to age
     def compute_age(self):
         for b in self:
@@ -55,6 +56,13 @@ class College1(models.Model):
     college_address = fields.Char()
     taluka = fields.Char()
     distict = fields.Char()  
-    student_id = fields.Many2one('student.information1')  
+    student_id = fields.Many2one('student.information1') 
+
+class Subject(models.Model):
+    _name = 'student.subject'
+
+    name = fields.Char()
+
+
 
 

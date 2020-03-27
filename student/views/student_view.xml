@@ -37,9 +37,15 @@
         					<field name="average"/>
         					<field name="college_name_id"/>
         				</group>
+
+                        <group>
+                            <field name="student_subject" widget='many2many_tags' string="Subject"/>
+                        </group>
                     </group>
+
                         <notebook>
                             <page string='College Information'>
+                                <sheet>
                                     <field name="college_lines">
                                         <tree editable="bottom">
                                             <field name="name"/>
@@ -48,7 +54,11 @@
                                             <field name="distict"/>
                                             <field name="student_id" invisible="1"/>
                                         </tree>
+                                        <!-- <form>
+                                           <field name="name"/> 
+                                        </form> -->
                                     </field>
+                                </sheet> 
                                     <field name="village" invisible="1"/>
                             </page>
                             <page string='Description'>
