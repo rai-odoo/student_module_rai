@@ -14,7 +14,7 @@ class Student(models.Model):
     village = fields.Char()
     subject_1 = fields.Integer()
     subject_2 = fields.Integer()
-    average = fields.Float(compute="compute_average")
+    average = fields.Float(compute="compute_average",store=True)
     display_name = fields.Char()
     display_name1 = fields.Char()
     college_name_id = fields.Many2one('student.college')
@@ -41,7 +41,7 @@ class Student(models.Model):
     def _onchange_age(self):
         self.display_name1 = 'Your age is: %s' % (self.age if self.age else '')         
            
-class College(models.Model):
+class College(models.Model):  #Many2one
     _name = 'student.college'
 
     name = fields.Char(string='College Name')
@@ -49,7 +49,7 @@ class College(models.Model):
     taluka = fields.Char()
     distict = fields.Char()
 
-class College1(models.Model):
+class College1(models.Model):  #One2many
     _name = 'student.college.lines'
 
     name = fields.Char(string = 'College Name')
@@ -58,7 +58,7 @@ class College1(models.Model):
     distict = fields.Char()  
     student_id = fields.Many2one('student.information1') 
 
-class Subject(models.Model):
+class Subject(models.Model):  #Many2many
     _name = 'student.subject'
 
     name = fields.Char()
