@@ -12,6 +12,7 @@ class Student(models.Model):
     # sport_membership = fields.Selection([("game1","Cricket"),("game2","Vollyball")])
     start_exam = fields.Datetime(required = True)
     village = fields.Char()
+    gender = fields.Selection([("male","Male"),("female","Female")])
     subject_1 = fields.Integer()
     subject_2 = fields.Integer()
     average = fields.Float(compute="compute_average",store=True)
