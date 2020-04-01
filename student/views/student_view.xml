@@ -42,6 +42,7 @@
                         <group>
                             <field name="student_subject" widget='many2many_tags' string="Subject"/>
                         </group>
+
                     </group>
 
                         <notebook>
@@ -132,7 +133,7 @@
                 <field name="college_name_id"/>         
                 <filter name='male' string='Male' domain="[('gender','=','male')]"/>
                 <filter name='female' string="Female" domain="[('gender', '=' , 'female')]"/>
-                <filter name='average' string='Average' domain="[('average','>=','70')]"/>
+                <filter name='average' string='Average' domain="[('average','&gt;=','70')]"/>
                 <group>
                     <filter name='gender' context="{'group_by':'gender'}"/>
                 </group>
@@ -143,10 +144,25 @@
      <record id="student_calendar" model="ir.ui.view"> 
         <field name="name">student.calendar</field>
         <field name="model">student.information1</field>  
-        <field name = "arch" type ="xml">         
+        <field name = "arch" type ="xml">  
             <calendar date_start="start_exam" color='name' mode='month' quick_add="False" > 
                 <field name="name"/>        
             </calendar>
+        </field>    
+    </record>
+   
+    <record id="student_inherit" model="ir.ui.view"> 
+        <field name="name">student.inherit</field>
+        <field name="model">student.information1</field>  
+        
+        <field name="inherit_id" ref="student.student_view"/>  
+        <field name = "arch" type ="xml">        
+            <field name="student_subject" position='after'>
+                <field name="qualification"/>
+            </field>    
+            <field name='qualification' position='after'>
+                <field name='hobby' widget='many2many_tags' string='Hobby'/>
+            </field>
         </field>    
     </record>
 
