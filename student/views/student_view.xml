@@ -154,7 +154,6 @@
     <record id="student_inherit" model="ir.ui.view"> 
         <field name="name">student.inherit</field>
         <field name="model">student.information1</field>  
-        
         <field name="inherit_id" ref="student.student_view"/>  
         <field name = "arch" type ="xml">        
             <field name="student_subject" position='after'>

@@ -3,5 +3,7 @@
 {
     'name': 'Student Module',
     'summary': 'Training Student Module',
-    'data': ['views/student_view.xml']
+    'data': ['views/student_view.xml',
+             'views/template.xml'
+            ]
 }
